@@ -1,176 +1,189 @@
 import java.util.Scanner;
+
 public class Main {
+
     public static void main(String[] args) {
         Main m = new Main();
         Scanner in = new Scanner(System.in);
-//        System.out.println("Введите х: ");
-//        double x = in.nextDouble();
-//        System.out.println("дробная часть: " + m.fraction(x));
-//
-//        System.out.println("Введите х: ");
-//        char x1 = in.next().charAt(0);;
-//        System.out.println("число: " + m.charToNum(x1));
 
-//        System.out.println("Введите х: ");
-//        int x2 = in.nextInt();
-//        System.out.println("число двузначное - : " + m.is2Digits(x2));
+        // Проверка дробной части
+        System.out.println("Введите х (дробное число): ");
+        if (in.hasNextDouble()) {
+            double x = in.nextDouble();
+            System.out.println("дробная часть: " + m.fraction(x));
+        } else {
+            System.out.println("Ошибка: введите корректное дробное число.");
+            in.next(); // сбросить некорректный ввод
+        }
 
-//          System.out.println("Введите a: ");
-//          int a = in.nextInt();
-//          System.out.println("Введите b: ");
-//          int b = in.nextInt();
-//          System.out.println("Введите num: ");
-//          int num = in.nextInt();
-//          System.out.println("результат: " + m.isInRange(a, b, num));
+        // Проверка на символ
+        System.out.println("Введите х (символ): ");
+        if (in.hasNext()) {
+            char x1 = in.next().charAt(0);
+            System.out.println("число: " + m.charToNum(x1));
+        } else {
+            System.out.println("Ошибка: введите корректный символ.");
+            in.next();
+        }
 
-//        System.out.println("Введите a: ");
-//          int a1 = in.nextInt();
-//          System.out.println("Введите b: ");
-//          int b1 = in.nextInt();
-//          System.out.println("Введите c: ");
-//          int c1 = in.nextInt();
-//          System.out.println("результат: " + m.isEqual(a1, b1, c1));
+        // Проверка на двузначное число
+        System.out.println("Введите х (целое число): ");
+        if (in.hasNextInt()) {
+            int x2 = in.nextInt();
+            System.out.println("число двузначное - : " + m.is2Digits(x2));
+        } else {
+            System.out.println("Ошибка: введите корректное целое число.");
+            in.next();
+        }
 
-//        System.out.println("Введите х: ");
-//        int x5 = in.nextInt();
-//        System.out.println("результат: " + m.abs(x5));
+        // Проверка диапазона
+        System.out.println("Введите a (целое число): ");
+        int a = getValidInt(in);
+        System.out.println("Введите b (целое число): ");
+        int b = getValidInt(in);
+        System.out.println("Введите num (целое число): ");
+        int num = getValidInt(in);
+        System.out.println("результат: " + m.isInRange(a, b, num));
 
-//        System.out.println("Введите х: ");
-//        int x6 = in.nextInt();
-//        System.out.println("результат: " + m.is35(x6));
+        // Проверка на равенство
+        System.out.println("Введите a (целое число): ");
+        int a1 = getValidInt(in);
+        System.out.println("Введите b (целое число): ");
+        int b1 = getValidInt(in);
+        System.out.println("Введите c (целое число): ");
+        int c1 = getValidInt(in);
+        System.out.println("результат: " + m.isEqual(a1, b1, c1));
 
-//        System.out.println("Введите х: ");
-//        int x7 = in.nextInt();
-//        System.out.println("Введите y: ");
-//        int y7 = in.nextInt();
-//        System.out.println("Введите z: ");
-//        int z7 = in.nextInt();
-//        System.out.println("результат: " + m.max3(x7, y7, z7));
+        // Проверка абсолютного значения
+        System.out.println("Введите х (целое число): ");
+        int x5 = getValidInt(in);
+        System.out.println("результат: " + m.abs(x5));
 
-//        System.out.println("Введите х: ");
-//        int x8 = in.nextInt();
-//        System.out.println("Введите y: ");
-//        int y8 = in.nextInt();
-//        System.out.println("результат: " + m.sum2(x8, y8));
+        // Проверка на 3 и 5
+        System.out.println("Введите х (целое число): ");
+        int x6 = getValidInt(in);
+        System.out.println("результат: " + m.is35(x6));
 
-//        System.out.println("Введите х: ");
-//        int x9 = in.nextInt();
-//        System.out.println("результат: " + m.day(x9));
+        // Проверка на максимальное из трех чисел
+        System.out.println("Введите x, y, z (целые числа): ");
+        int x7 = getValidInt(in);
+        int y7 = getValidInt(in);
+        int z7 = getValidInt(in);
+        System.out.println("результат: " + m.max3(x7, y7, z7));
 
-//        System.out.println("Введите х: ");
-//        int x10 = in.nextInt();
-//        System.out.println("результат: " + m.listNums(x10));
+        // Проверка дня недели
+        System.out.println("Введите номер дня недели: ");
+        int x9 = getValidInt(in);
+        System.out.println("результат: " + m.day(x9));
 
-//        System.out.println("Введите х: ");
-//        int x11 = in.nextInt();
-//        System.out.println("результат: " + m.chet(x11));
+        // Проверка списка чисел
+        System.out.println("Введите х (количество чисел для вывода): ");
+        int x10 = getValidInt(in);
+        System.out.println("результат: " + m.listNums(x10));
 
-//        System.out.println("Введите х: ");
-//        long x12 = in.nextInt();
-//        System.out.println("результат: " + m.numLen(x12));
+        // Проверка четного числа
+        System.out.println("Введите х (целое число): ");
+        int x11 = getValidInt(in);
+        System.out.println("результат: " + m.chet(x11));
 
-//        System.out.println("Введите х: ");
-//        int x13 = in.nextInt();
-//        m.square(x13);
+        // Проверка длины числа
+        System.out.println("Введите х (длинное число): ");
+        long x12 = getValidLong(in);
+        System.out.println("результат: " + m.numLen(x12));
 
-//        System.out.println("Введите х: ");
-//        int x14 = in.nextInt();
-//        m.rightTriangle(x14);
+        // Проверка квадрата
+        System.out.println("Введите х (целое число): ");
+        int x13 = getValidInt(in);
+        m.square(x13);
 
-//        System.out.println("Введите х: ");
-//        int x15 = in.nextInt();
-//        System.out.println("Введите количество символов в массиве: ");
-//        int k = in.nextInt();
-//        System.out.println("Введите элементы массива: ");
-//        int[] arr = new int[k];
-//        for (int i = 0; i < k; i++) {
-//            int p = in.nextInt();
-//            arr[i] = p;
-//        }
-//        System.out.println("результат: " + m.findFirst(arr, x15));
+        // Проверка прямоугольного треугольника
+        System.out.println("Введите х (целое число): ");
+        int x14 = getValidInt(in);
+        m.rightTriangle(x14);
 
+        // Проверка о нахождении первого элемента в массиве
+        System.out.println("Введите значение для поиска: ");
+        int x15 = getValidInt(in);
+        System.out.println("Введите количество символов в массиве: ");
+        int k = getValidInt(in);
+        int[] arr = new int[k];
+        System.out.println("Введите элементы массива: ");
+        for (int i = 0; i < k; i++) {
+            arr[i] = getValidInt(in);
+        }
+        System.out.println("результат: " + m.findFirst(arr, x15));
 
-//        System.out.println("Введите количество символов в массиве: ");
-//        int k1 = in.nextInt();
-//        System.out.println("Введите элементы массива: ");
-//        int[] arr2 = new int[k1];
-//        for (int i = 0; i < k1; i++) {
-//            int p = in.nextInt();
-//            arr2[i] = p;
-//        }
-//        System.out.println("результат: " + m.maxAbs(arr2));
+        // Проверка на максимальное абсолютное значение в массиве
+        System.out.println("Введите количество символов в массиве: ");
+        int k1 = getValidInt(in);
+        int[] arr2 = new int[k1];
+        System.out.println("Введите элементы массива: ");
+        for (int i = 0; i < k1; i++) {
+            arr2[i] = getValidInt(in);
+        }
+        System.out.println("результат: " + m.maxAbs(arr2));
 
-
-
-//        System.out.println("Введите количество символов в массиве arr: ");
-//        int k3 = in.nextInt();
-//        System.out.println("Введите pos: ");
-//        int pos = in.nextInt();
-//        System.out.println("Введите элементы массива: ");
-//        int[] arr3 = new int[k3];
-//        for (int i = 0; i < k3; i++) {
-//            int p = in.nextInt();
-//            arr3[i] = p;
-//        }
-//        System.out.println("Введите количество символов в массиве ins: ");
-//        int kins = in.nextInt();
-//        System.out.println("Введите элементы массива: ");
-//        int[] ins = new int[kins];
-//        for (int i = 0; i < kins; i++) {
-//            int p = in.nextInt();
-//            ins[i] = p;
-//        }
-//        int l=k3 + kins;
-//        arr3= m.add(arr3, ins, pos);
-//        for (int i = 0; i < l; i++) {
-//            System.out.println(arr3[i]);
-//        }
-
-
-
-//        System.out.println("Введите количество символов в массиве: ");
-//        int k7 = in.nextInt();
-//        System.out.println("Введите элементы массива: ");
-//        int[] arr7 = new int[k7];
-//        for (int i = 0; i < k7; i++) {
-//            int p = in.nextInt();
-//            arr7[i] = p;
-//        }
-//        arr7= m.reverseBack(arr7);
-//        for (int i = 0; i < k7; i++) {
-//            System.out.println(arr7[i]);
-//        }
-
-
-
-//        System.out.println("Введите х: ");
-//        int x16 = in.nextInt();
-//        System.out.println("Введите количество символов в массиве: ");
-//        int k9 = in.nextInt();
-//        System.out.println("Введите элементы массива: ");
-//        int[] arr9 = new int[k9];
-//        for (int i = 0; i < k9; i++) {
-//            int p = in.nextInt();
-//            arr9[i] = p;
-//        }
-//        arr9= m.findAll(arr9, x16);
-//        for (int i = 0; i < arr9.length; i++) {
-//            System.out.println(arr9[i]);
-//        }
+        System.out.println("Введите количество символов в массиве arr: ");
+        int k3 = in.nextInt();
+        System.out.println("Введите pos: ");
+        int pos = in.nextInt();
+        System.out.println("Введите элементы массива: ");
+        int[] arr3 = new int[k3];
+        for (int i = 0; i < k3; i++) {
+            int p = in.nextInt();
+            arr3[i] = p;
+        }
+        System.out.println("Введите количество символов в массиве ins: ");
+        int kins = in.nextInt();
+        System.out.println("Введите элементы массива: ");
+        int[] ins = new int[kins];
+        for (int i = 0; i < kins; i++) {
+            int p = in.nextInt();
+            ins[i] = p;
+        }
+        int l=k3 + kins;
+        arr3= m.add(arr3, ins, pos);
+        for (int i = 0; i < l; i++) {
+            System.out.print(arr3[i]);
+        }
 
 
 
-
-
-
-
-
-
-
-
-
-
+        System.out.println("Введите количество символов в массиве: ");
+        int k7 = in.nextInt();
+        System.out.println("Введите элементы массива: ");
+        int[] arr7 = new int[k7];
+        for (int i = 0; i < k7; i++) {
+            int p = in.nextInt();
+            arr7[i] = p;
+        }
+        arr7= m.reverseBack(arr7);
+        for (int i = 0; i < k7; i++) {
+            System.out.print(arr7[i]);
+        }
     }
+
+    private static int getValidInt(Scanner scanner) {
+        while (!scanner.hasNextInt()) {
+            System.out.println("Ошибка: введите корректное целое число.");
+            scanner.next(); // сбросить некорректный ввод
+        }
+        return scanner.nextInt();
+    }
+
+    private static long getValidLong(Scanner scanner) {
+        while (!scanner.hasNextLong()) {
+            System.out.println("Ошибка: введите корректное длинное число.");
+            scanner.next(); // сбросить некорректный ввод
+        }
+        return scanner.nextLong();
+    }
+
+
+
+
+
+
 
 
     public double fraction(double x) {
@@ -353,7 +366,4 @@ public class Main {
         return arr2;
 
     }
-
-
-
 }
